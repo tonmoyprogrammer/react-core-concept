@@ -4,6 +4,7 @@ import './App.css'
 import Friends from './friends';
 import Users from './users';
 import { Suspense } from 'react';
+import Hello from './hello';
 
 
 
@@ -16,6 +17,14 @@ const fetchFriend = async()=>
   const res = await fetch('https://jsonplaceholder.typicode.com/users')
   return res.json();
 }
+
+
+const allUsers = async()=>
+{
+  const res = await fetch ("https://jsonplaceholder.typicode.com/users");
+  return res.json();
+}
+
 
 function App()
 {
@@ -33,6 +42,9 @@ function App()
 
   const friendFetch = fetchFriend();
 
+  const myUser = allUsers();
+
+
   return (
     <>
     <h1>React Core Concept</h1>
@@ -48,6 +60,10 @@ function App()
 
     <Player></Player>
     <Counter></Counter>
+
+    <Suspense fallback={<p>Users are loading..................</p>}>
+    <Hello user={myUser }></Hello>
+    </Suspense>
 
     
     {/* <button onClick={handleclick1}>Click me 1</button> */}

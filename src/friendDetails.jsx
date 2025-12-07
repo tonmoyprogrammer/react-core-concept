@@ -1,6 +1,6 @@
 export default function DetailsFrnd({frd})
     {
-        console.log(frd)
+        
         return(
             <div className="">
                 <p style={{
