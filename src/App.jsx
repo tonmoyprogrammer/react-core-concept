@@ -1,6 +1,21 @@
 import Player from './player';
 import Counter from './counter';
 import './App.css'
+import Friends from './friends';
+import Users from './users';
+import { Suspense } from 'react';
+
+
+
+
+const fetchFriends = fetch('https://jsonplaceholder.typicode.com/users')
+.then(res => res.json())
+
+const fetchFriend = async()=>
+{
+  const res = await fetch('https://jsonplaceholder.typicode.com/users')
+  return res.json();
+}
 
 function App()
 {
@@ -14,9 +29,23 @@ function App()
     alert("My name is - "+nam);
   }
 
+  const user = fetchFriends;
+
+  const friendFetch = fetchFriend();
+
   return (
     <>
     <h1>React Core Concept</h1>
+
+   {/* <Suspense fallback={<p>Loading ..................</p>}>
+
+   <Users user={user}></Users>
+
+   </Suspense> */}
+<Suspense fallback={<p>loading....................</p>}>
+<Friends friend={friendFetch}></Friends>
+</Suspense>
+
     <Player></Player>
     <Counter></Counter>
 
